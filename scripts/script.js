@@ -6,3 +6,5 @@ function Journey (b1c, b1n, b2c, b2n, day){
         this.time = 0;
         this.day = day;
 }
+
+var journeyList = [];
