@@ -1,4 +1,4 @@
-function Journey (class1, buil1, class2, buil2, day, term){
+function Journey (class1, buil1, class2, buil2, day, term, online){
         this.class1 = class1;
         this.buil1 = buil1;
         this.class2 = class2;
@@ -6,7 +6,7 @@ function Journey (class1, buil1, class2, buil2, day, term){
         this.day = day;
         this.term = term;
         this.time = 0;
-        this.online = false;
+        this.online = online;
 }
 
 function Course (name, loc, until, start, end, day){
@@ -98,11 +98,30 @@ for (let day of week){
                 (c1.startTime < c2.startTime) ? -1 : (c1.startTime > c2.startTime) ? 1 : 0);
 }
 
-var c1 = new Course("CPSC","CS",1,"17:00:00","18:00:00","Tue");
-var c2 = new Course("MATH","M",1,"16:00:00","17:00:00","Tue");
-var array = [c1,c2];
-console.log(array[0].name + " " + array[1].name);
-array.sort(
-        (c1,c2) =>
-        (c1.startTime < c2.startTime) ? -1 : (c1.startTime > c2.startTime) ? 1 : 0);
-        console.log(array[0].name + " " + array[1].name);
+for (let day of week){
+        var courses = day.courses;
+        var length = courses.length;
+        for (let i = 0; i < length -1; i++){
+                var c1 = courses[i];
+                var c2 = courses[i+1];
+                var class1 = c1.name;
+                var buil1 = c1.location;
+                var class2 = c2.name;
+                var buil2 = c2.location;
+                var date = c1.day;
+
+                var term = -1;
+                if (c1.until == 1){
+                        term = 1;
+                }
+                else {
+                        term = 2;
+                }
+                var online = false;
+                if (buil1 === " " || buil2 === " "){
+                        online = true;
+                }
+
+
+        }
+}
