@@ -9,6 +9,8 @@ function Journey (class1, buil1, class2, buil2, day, term, online){
         this.online = online;
 }
 
+var listofJourney = [];
+
 function Course (name, loc, until, start, end, day){
         this.name = name;
         this.location = loc;
@@ -20,17 +22,7 @@ function Course (name, loc, until, start, end, day){
  var listofCourses = [];
 
 const ical = require('node-ical');
-const events = ical.sync.parseFile("schedule.ics");
-for (const event of Object.values(events)){
-        console.log(
-                'Course: ' + String(event.summary) +
-                "\nLocation: " + event.location +
-                "\nStart Date: " + event.start +
-                "\nEnd Date: " + event.end + 
-                "\n" + event.rrule
-                + "\n"
-        );
-};
+const events = ical.sync.parseFile('scripts\\script.js');
 
 
 for (const event of Object.values(events)){
@@ -52,14 +44,6 @@ for (const event of Object.values(events)){
 var length = listofCourses.length;
 listofCourses = listofCourses.slice(1,length-1);
 
-console.log(
-        listofCourses[3].name + "\n" +
-        listofCourses[3].location + "\n" +
-        listofCourses[3].until + "\n" +
-        listofCourses[3].day + "\n" +
-        listofCourses[3].startTime + "\n" +
-        listofCourses[3].endTime
-)
 var mapDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
 function Day (){
@@ -98,6 +82,8 @@ for (let day of week){
                 (c1.startTime < c2.startTime) ? -1 : (c1.startTime > c2.startTime) ? 1 : 0);
 }
 
+
+
 for (let day of week){
         var courses = day.courses;
         var length = courses.length;
@@ -118,10 +104,11 @@ for (let day of week){
                         term = 2;
                 }
                 var online = false;
-                if (buil1 === " " || buil2 === " "){
+                if (buil1 === "" || buil2 === ""){
                         online = true;
                 }
-
-
+                let journey = new Journey(class1, buil1, class2, buil2, date, term, online);
+                listofJourney.push(journey);
         }
 }
+
