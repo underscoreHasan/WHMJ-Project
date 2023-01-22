@@ -92,3 +92,17 @@ for (let i = 0; i<10; i++){
         week.push(day);
 }
 
+for (let day of week){
+        var sortedCourses = day.courses.sort(
+                (c1,c2) =>
+                (c1.startTime < c2.startTime) ? -1 : (c1.startTime > c2.startTime) ? 1 : 0);
+}
+
+var c1 = new Course("CPSC","CS",1,"17:00:00","18:00:00","Tue");
+var c2 = new Course("MATH","M",1,"16:00:00","17:00:00","Tue");
+var array = [c1,c2];
+console.log(array[0].name + " " + array[1].name);
+array.sort(
+        (c1,c2) =>
+        (c1.startTime < c2.startTime) ? -1 : (c1.startTime > c2.startTime) ? 1 : 0);
+        console.log(array[0].name + " " + array[1].name);
